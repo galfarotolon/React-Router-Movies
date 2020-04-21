@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import MovieList from './MovieList';
+import { Route, Switch, Link } from 'react-router-dom';
 
 const Movie = (props) => {
   const [movie, setMovie] = useState();
@@ -23,11 +24,22 @@ const Movie = (props) => {
 
   }, [id]);
 
-  // Uncomment this only when you have moved on to the stretch goals
-  // const saveMovie = () => {
-  //   const addToSavedList = props.addToSavedList;
-  //   addToSavedList(movie)
-  // }
+
+  function saveMovie() {
+    const addToSavedList = props.addToSavedList;
+
+    return (
+
+      <div>
+        <Link to={`/movies/${movie.id}`}>
+
+          <p>{addToSavedList(movie)}</p>
+        </Link>
+      </div>
+    )
+
+  }
+
 
   if (!movie) {
     return <div>Loading movie information...</div>;
@@ -52,7 +64,7 @@ const Movie = (props) => {
           </div>
         ))}
       </div>
-      <div className="save-button">Save</div>
+      <div className="save-button" onClick={saveMovie}>Save</div>
     </div>
   );
 }

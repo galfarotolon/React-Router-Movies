@@ -4,6 +4,7 @@ import SavedList from './Movies/SavedList';
 import { Route, Switch, Link } from 'react-router-dom';
 import Movie from "./Movies/Movie"
 
+
 const App = () => {
   const [savedList, setSavedList] = useState([]);
 
@@ -18,7 +19,7 @@ const App = () => {
         <MovieList />
       </Route>
       <Route path="/movies/:id" >
-        <Movie />
+        <Movie addToSavedList={addToSavedList} />
       </Route>
     </div>
   );
